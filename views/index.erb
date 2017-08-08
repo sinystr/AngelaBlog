@@ -1,1 +1,8 @@
-<h2><%= title %></h2>
+<% if @articles.empty? %>
+    <p class="alert alert-info">За съжалание в блога няма публикувани статии все още!</p>
+<% else %>
+    <% @articles.each do |article| %>
+        <h2><%= article.title %></h2>
+        <p><%= article.text %></p>
+    <% end %>
+<% end %>

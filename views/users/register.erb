@@ -1,0 +1,52 @@
+<h2 class="page-header">Регистрация</h2>
+<div id="status-messages">
+  <% if flash[:success] %>
+      <p class="bg-success"><%= flash[:success] %></p>
+  <% end %>
+  
+  <% if defined? errors and !errors.empty? %>
+    <% errors.keys.each do |attr| %>
+      <p class="alert alert-danger"><%= errors[attr][0] %></p>
+    <%end %>
+  <% end %>
+
+</div>
+<form method="post" onsubmit="return validatePasswords()">
+  <div class="form-group">
+    <label>E-mail:</label>
+    <input type="text" class="form-control" name="email" placeholder="E-mail"/>
+  </div>
+  <div class="form-group">
+    <label>Име:</label>
+    <input type="text" class="form-control" name="name" placeholder="Потребител"/>
+  </div>
+  <div class="form-group error">
+    <label>Парола</label>
+    <input type="password" class="form-control" name="password" placeholder="Парола"/>
+  </div>
+  <div class="form-group error">
+    <label>Парола отново</label>
+    <input type="password" class="form-control" placeholder="Повтори парола"/>
+  </div>
+
+  <button type="submit" class="btn btn-default">Влез</button>
+</form>
+
+<script>
+    function validatePasswords() {
+        var confirmPasswordCorrect = $('#password input').val() == $('#confirm-password input').val();
+        if(confirmPasswordCorrect){
+          // Send the registration request
+          return true;
+        }
+        
+        // Show error
+        $('#status-messages').append($('<div />', {
+            'class' : 'alert alert-danger',
+            'text' : 'Паролите коите сте въвели не съвпадат'
+        }));
+        
+        return false;
+
+    }
+</script>

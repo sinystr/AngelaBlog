@@ -1,0 +1,11 @@
+en:
+  title: "Georgi Nikolaev"
+  activerecord:
+    errors:
+      models:
+        user:
+          blank: "Please fill in your %{attribute}."
+          too_short: "The %{attribute} is too short."
+          too_long: "The %{attribute} is too long."
+          invalid: "The %{attribute} you entered is invalid."
+          taken: "The %{attribute} is already taken."
