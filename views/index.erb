@@ -1,3 +1,7 @@
+<% if flash[:error] %>
+    <p class="alert alert-danger"><%= flash[:error] %></p>
+<% end %>
+
 <% if @articles.empty? %>
     <p class="alert alert-info">За съжалание в блога няма публикувани статии все още!</p>
 <% else %>

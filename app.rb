@@ -49,9 +49,8 @@ helpers do
     
     if @current_user.nil? && user_signed_in?
       @current_user = User.find(session[:user_id]);
-      puts '-' * 23, 1, '-' * 23
     end
-    puts '-' * 23, 2, '-' * 23
+
     @current_user;
   end
 

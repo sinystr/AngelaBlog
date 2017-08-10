@@ -17,10 +17,14 @@ get '/users/login' do
   erb :'users/login'
 end
 
+get '/users/logout' do
+  session[:user_id] = nil
+  flash[:success] = 'Успешно излязохте от акаунта си!'
+  redirect '/users/login'
+end
+
 post '/users/login' do
   user = User.find_by(:email => params[:email], :password => params[:password]);
-  
-  puts '-' * 25, user, '-' * 25
 
   if user
       session[:user_id] = user.id

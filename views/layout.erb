@@ -6,13 +6,21 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css"/>
     <link rel="stylesheet" href="/css/bootstrap_theme.css"/>
+    <link rel="stylesheet" href="/css/bootstrap3-wysihtml5.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-tagsinput.css">
     <link rel="stylesheet" href="/css/style.css"/>
 
     <!-- Javsscript -->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/jquery.redirect.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script> 
+    <script type="text/javascript" src="/js/wysihtml5x-toolbar.min.js"></script>
+    <script type="text/javascript" src="/js/handlebars.runtime.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap3-wysihtml5.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-tagsinput.js"></script>
 </head>
 <body>
   <div class="container">
@@ -26,7 +34,13 @@
               <li role="presentation"><a href="/users/login">Вход</a></li>
             <% end %>
             <% if user_signed_in? && current_user.can_control_users? %>
-              <li role="presentation"><a href="/users/">Потребители</a></li>
+              <li role="presentation"><a href="/edit/users/">Потребители</a></li>
+            <% end %>
+            <% if user_signed_in? && current_user.can_control_articles? %>
+              <li role="presentation"><a href="/edit/articles/create">Напиши статия</a></li>
+            <% end %>
+            <% if user_signed_in? %>
+              <li role="presentation"><a href="/users/logout">Изход</a></li>
             <% end %>
           </ul>
         </nav>

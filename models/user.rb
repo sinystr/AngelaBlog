@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
     rank == 1
   end
 
+  def admin?
+    rank == 1
+  end
+
 end

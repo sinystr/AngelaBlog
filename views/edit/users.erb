@@ -6,7 +6,7 @@
         <tr>
             <th>E-mail</th>
             <th>Name</th>
-            <th>Control</th>
+            <th style="text-align:center;">Администратор</th>
         </tr>
         </thead>
         <tbody>
@@ -14,10 +14,18 @@
                 <tr>
                     <td><%= user.email %></td>
                     <td><%= user.name %></td>
-                    <td>Изтрии</td>
+                    <td align="center"><input type="checkbox" <%= 'checked = "checked"' unless user.rank == 0 %>  id="user-<%= user.id %>" onclick="return change_rank('<%= user.id %>');" ></td>
                 </tr>
             <% end %>
         </tbody>
-        </table>
+        </table>    
 
 <% end %>
+
+<script>
+    function change_rank(user_id)
+    {
+        var new_rank = $('#user-' + user_id).prop('checked') ? 1 : 0;
+       $.redirect('/edit/users/set_rank/', {user: user_id, rank: new_rank});
+    }
+</script>

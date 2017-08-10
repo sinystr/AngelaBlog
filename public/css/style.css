@@ -15,4 +15,30 @@
 #logged-in-account
 {
   margin:0 15px;
+  margin-top:20px;
+}
+
+.bootstrap-tagsinput
+{
+  display: block !important;
+}
+
+.label-info
+{
+  background: #337ab7;
+}
+
+.btn-default
+{
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+27,f4f4f4+100 */
+background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(top, #ffffff 27%, #f4f4f4 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #ffffff 27%,#f4f4f4 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #ffffff 27%,#f4f4f4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f4f4f4',GradientType=0 ); /* IE6-9 */
+}
+
+.clear
+{
+  clear: both;
 }
