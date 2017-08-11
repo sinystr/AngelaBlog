@@ -6,4 +6,8 @@ class Article < ActiveRecord::Base
     def text
         self["text_#{I18n.locale}"]
     end
+
+    def description
+        "#{self["text_#{I18n.locale}"][0..210]}.."
+    end
 end

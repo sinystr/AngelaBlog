@@ -3,6 +3,8 @@ require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'i18n'
 require 'i18n/backend/fallbacks'
+require 'securerandom'
+require 'rmagick'
 
 # Routes
 require_relative 'routes/users'
@@ -12,6 +14,8 @@ require_relative 'routes/edit'
 # Models
 require_relative 'models/user'
 require_relative 'models/article'
+
+require_relative 'lib/pictures_controller'
 
 configure do
   I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)

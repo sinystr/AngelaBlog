@@ -34,14 +34,29 @@ post '/edit/users/set_rank/' do
     redirect '/edit/users/'
 end
 
-get '/edit/articles/create' do
+get '/edit/articles/create' do  
     erb :'edit/articles/create'
 end
 
 post '/edit/articles/create' do
-    tempfile = params[:picture][:tempfile] 
-    filename = params[:picture][:filename] 
-    cp(tempfile.path, "public/uploads/#{filename}")
-    puts '-' * 33, params, '-' * 33
+    picturesController = PicturesController.new
+    picture = picturesController.upload_picture params[:picture]
+
+    article = Article.new picture: picture, title_en: params[:title_en], text_en: params[:text_en],
+                title_bg: params[:title_bg], text_bg: params[:text_bg]
+    
+        if article.save
+            flash[:success] = 'Успешно публикувахте статията!'
+            redirect '/'
+        else  
+            erb :'edit/articles/create', locals: {errors: article.errors}
+        end
+
     erb :'edit/articles/create'
+end
+
+get '/edit/articles/delete' do
+    Article.destroy(params[:id])
+    flash[:success] = 'Успешно изтрихте статията!'
+    redirect '/'
 end
