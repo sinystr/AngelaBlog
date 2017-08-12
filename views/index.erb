@@ -19,12 +19,14 @@
                 <h3><%= article.title %></h2>
                 <p><%= article.description %></p>
                 <input type="button" class="btn btn-primary" value="Прочети още" onclick="location.href = '/articles/?article_id=<%= article.id %>';">
+                <% if user_signed_in? && current_user.can_control_articles? %>
                 <div class="row" style="margin-top:15px;">
                     <div class="col-md-2 right"><a href="/edit/articles/delete?id=<%= article.id %>">Изтрий</a></div>
                     <div class="col-md-2 right">
                         <a href="/edit/articles/edit?id=<%= article.id %>">Промени</a>
                     </div>
                 </div>
+                <% end %>
             </div>
         </div>
     <% end %>

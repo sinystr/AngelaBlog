@@ -27,20 +27,20 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="/">Статии</a></li>
-            <li role="presentation"><a href="#">Тагове</a></li>
+            <li role="presentation"><a href="/"><%= I18n.t('articles') %></a></li>
+            <li role="presentation"><a href="#"><%= I18n.t('tags') %></a></li>
             <% unless user_signed_in? %>
-              <li role="presentation"><a href="/users/register">Регистрация</a></li>
-              <li role="presentation"><a href="/users/login">Вход</a></li>
+              <li role="presentation"><a href="/users/register"><%= I18n.t('register') %></a></li>
+              <li role="presentation"><a href="/users/login"><%= I18n.t('login') %></a></li>
             <% end %>
             <% if user_signed_in? && current_user.can_control_users? %>
-              <li role="presentation"><a href="/edit/users/">Потребители</a></li>
+              <li role="presentation"><a href="/edit/users/"><%= I18n.t('users') %></a></li>
             <% end %>
             <% if user_signed_in? && current_user.can_control_articles? %>
-              <li role="presentation"><a href="/edit/articles/create">Напиши статия</a></li>
+              <li role="presentation"><a href="/edit/articles/create"><%= I18n.t('create_article') %></a></li>
             <% end %>
             <% if user_signed_in? %>
-              <li role="presentation"><a href="/users/logout">Изход</a></li>
+              <li role="presentation"><a href="/users/logout"><%= I18n.t('logout') %></a></li>
             <% end %>
           </ul>
         </nav>

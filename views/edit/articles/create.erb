@@ -1,13 +1,23 @@
-<table class="table table-striped">
+ <% if @article.nil? %>
     <h3>Нова статия</h3>
-</table>    
+<% else %>
+    <h3>Промени статия</h3>
+<% end %>
 
-<form method="POST" action="/edit/articles/create" enctype="multipart/form-data">
+
+<% if @article.nil? %>
+    <form method="POST" action="/edit/articles/create" enctype="multipart/form-data">
+<% else %>
+    <form method="POST" action="/edit/articles/update" enctype="multipart/form-data">       
+<% end %>
+
     <div class="form-group">
-    <img id="picture-preview" src="#" height="250"/>
+    <img id="picture-preview" src="/article_pictures/<%= @article.picture unless @article.nil? %>" height="250"/>
     <div class="clear"></div>
     <label>Картинка:</label>
-    <input id="picture" type="file" name="picture">
+    <input id="picture" type="file" name="picture"
+            src="/article_pictures/<%= @article.picture unless @article.nil? %>"
+    />
     </div>
 
     <ul class="nav nav-tabs" style="margin:25px 0;">
@@ -19,21 +29,27 @@
         <div id="article-bulgarian" class="tab-pane fade in active">
             <div class="form-group">
                 <label>Заглавие:</label>
-                <input type="text" class="form-control" name="title_bg" placeholder="Заглавие" value="1" required>
+                <input value="<%= @article.title_bg unless @article.nil? %>"
+                type="text" class="form-control" name="title_bg" placeholder="Заглавие" required>
             </div> 
             <div class="form-group">
                 <label>Текст:</label>
-                <textarea class="article-text form-control" name="text_bg">2</textarea>
+                <textarea class="article-text form-control" name="text_bg">
+                    <%= @article.text_bg unless @article.nil?%>
+                </textarea>
             </div>
         </div>
         <div id="article-english" class="tab-pane fade">
             <div class="form-group">
                 <label>Заглавие:</label>
-                <input type="text" class="form-control" name="title_en" value="4" placeholder="E-mail" required>
+                <input value="<%= @article.title_en unless @article.nil? %>"
+                type="text" class="form-control" name="title_en" placeholder="E-mail" required>
             </div>
             <div class="form-group">
                 <label>Текст:</label>
-                <textarea class="article-text form-control" name="text_en">5</textarea>
+                <textarea class="article-text form-control" name="text_en">
+                    <%= @article.text_en unless @article.nil? %>
+                </textarea>
             </div>
         </div>
     </div>
@@ -41,7 +57,13 @@
         <label>Тагове:</label>
         <input type="text" class="form-control" name="tags" data-role="tagsinput" value="3" placeholder="Tags" required>
     </div>  
-    <button type="submit" class="btn btn-default">Публикувай</button>
+    <button type="submit" class="btn btn-primary right">
+        <% if @article.nil? %>
+            Публикувай
+        <% else %>
+            Обнови            
+        <% end %>
+    </button>
 </form>
 
 <script>

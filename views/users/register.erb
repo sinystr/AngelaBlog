@@ -23,13 +23,23 @@
   <div class="form-group error">
     <label>Парола</label>
     <input type="password" class="form-control" name="password" placeholder="Парола"/>
+    <small class="text-muted">
+      Паролата трябва да е съставена от поне 6 знака
+    </small>
   </div>
   <div class="form-group error">
     <label>Парола отново</label>
     <input type="password" class="form-control" placeholder="Повтори парола"/>
   </div>
+  <div class="form-group error">
+    <label>Кой е любимия ти филм?</label>
+    <input type="text" class="form-control" name="secret_answer" placeholder="Пример: Карибски пирати"/>
+    <small class="text-muted">
+      Въпроса ще бъде използван при изгубване на паролата
+    </small>
+  </div>
 
-  <button type="submit" class="btn btn-default">Влез</button>
+  <button type="submit" class="btn btn-default right">Регистрация</button>
 </form>
 
 <script>

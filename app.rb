@@ -14,6 +14,7 @@ require_relative 'routes/edit'
 # Models
 require_relative 'models/user'
 require_relative 'models/article'
+require_relative 'models/comment'
 
 require_relative 'lib/pictures_controller'
 
@@ -39,7 +40,7 @@ helpers do
       # Set the selected locale
       I18n.locale = params[:locale]
       # Redirect to the referer url
-      redirect request.referer
+      redirect '/'
     end
 
     I18n.locale = session[:locale] || "bg"

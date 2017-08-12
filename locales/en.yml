@@ -1,5 +1,16 @@
 en:
   title: "Georgi Nikolaev"
+  login: "Log in"
+  register: "Register"
+  logout: "Log out"
+  create_article: "Create article"
+  users: "Users"
+  tags: "Tags"
+  articles: "Articles"
+  login_button: "login"
+  password: "Password"
+  copyright: "&copy; 2017 All rights reserved."
+  read_more: "Read more"
   activerecord:
     errors:
       models:
@@ -9,3 +20,8 @@ en:
           too_long: "The %{attribute} is too long."
           invalid: "The %{attribute} you entered is invalid."
           taken: "The %{attribute} is already taken."
+        comment:
+          blank: "Your comment cannot be empty!"
+          too_short: "Your comment is too short."
+          too_long: "Your comment is too long."
+          

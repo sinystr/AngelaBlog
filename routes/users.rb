@@ -3,12 +3,12 @@ get '/users/register' do
 end
 
 post '/users/register' do
-  user = User.new email: params[:email], name: params[:name], password: params[:password]
+  user = User.new email: params[:email], 
+                  name: params[:name], password: params[:password], secret_answer: params[:secret_answer]
   if user.save
     flash[:success] = 'Регистрирахте се успешно! Може да влезете в акаунта си.'
     redirect '/users/login'
   else  
-    puts user.errors
     erb :'users/register', locals: {errors: user.errors}
   end
 end
@@ -35,4 +35,25 @@ post '/users/login' do
   end
 
   erb :'users/login'
+end
+
+get '/users/forgotten_password' do
+  erb :'users/forgotten_password'
+end
+
+post '/users/forgotten_password' do
+  user = User.find_by email: params[:email]
+  
+  if !user
+    flash[:error] = 'Потребителя не съществува!'
+    redirect '/users/forgotten_password'
+  end
+    
+  if user.secret_answer != params[:secret_answer]
+    flash[:error] = 'Отговора на тайния въпрос е грешен!'
+    redirect '/users/forgotten_password'
+  end
+
+  flash[:success] = "Усешно възстановихте паролата си! Паролата ви за вход е '#{user.password}'."
+  redirect '/users/login'
 end

@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+    has_many :comments
+
     def title
         self["title_#{I18n.locale}"]
     end

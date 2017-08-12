@@ -1,0 +1,28 @@
+<h4 class="mt-40">Промяна на коментар</h4>
+
+<% if defined? errors and !errors.empty? %>
+    <% errors.keys.each do |attr| %>
+        <p class="alert alert-danger"><%= errors[attr][0] %></p>
+    <%end %>
+<% end %>
+
+<div class="manage-comment">
+    <form method="POST" action="/edit/article/comment/edit">
+        <textarea name="text"><%= @comment.text %></textarea>
+        <input name="id" type="text" value="<%= @comment.id %>" class="hidden">
+        <button type="submit" class="btn btn-primary">Промени коментар</button>
+    </form>
+</div>
+
+<script>
+    $('.manage-comment textarea').wysihtml5({
+    toolbar: {"font-styles": false,
+        "emphasis": true,
+        "lists": false,
+        "html": false,
+        "link": false,
+        "image": false,
+        "color": false,
+        "blockquote": false}
+    });
+</script>

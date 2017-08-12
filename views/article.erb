@@ -17,21 +17,53 @@
 </div>
 
 <h4 class="mt-40">Коментари</h4>
-<div class="row article-comment">
-    <div class="col-md-3 comment-user">
-        <b>Георги Георгиев</b>
-    </div>
-    <div class="col-md-9 comment-text">
-        Lorem Ipsum е елементарен примерен текст, използван в печатарската и типографската индустрия. Lorem Ipsum е индустриален стандарт от около
-    </div>
+<div id="comments">
+<% if @article.comments.empty? %>
+    <p class="alert alert-info">Тази статия няма коментари!</p>
+<% else %>
+    <% @article.comments.each do |comment| %>
+        <div class="row article-comment">
+            <div class="col-md-3 comment-user">
+                <b><%= comment.user.name %></b>
+            </div>
+            <div class="col-md-9 comment-text">
+                <%= comment.text %>
+            </div>
+            <% if user_signed_in? && current_user.can_control_articles? %>
+            <div class="edit-comment">
+                <a href="/edit/article/comment/edit?id=<%= comment.id %>">Промени</a>
+                <a href="/edit/article/comment/delete?id=<%= comment.id %>">Изтрий</a>
+            </div>
+            <% end %>
+        </div>
+    <% end %>
+<% end %>
 </div>
 
 <% if user_signed_in? %>
 <h4 class="mt-40">Добави коментар</h4>
-<div class="add-comment">
-    <form action="POST" >
+<div class="manage-comment">
+    <form method="POST" action="/articles/add_comment/">
         <textarea name="comment"></textarea>
-        <input type="button" class="btn btn-primary" value="Добави коментар">
+        <input name="article_id" type="text" value="<%= @article.id %>" class="hidden">
+        <button type="submit" class="btn btn-primary">Добави коментар</button>
     </form>
 </div>
+<% else %>
+    <div id="cannot-comment">
+        <h5>Трябва да сте регистриран потребител за да коментирате!</h5>
+    </div>
 <% end %>
+
+<script>
+    $('.manage-comment textarea').wysihtml5({
+    toolbar: {"font-styles": false,
+        "emphasis": true,
+        "lists": false,
+        "html": false,
+        "link": false,
+        "image": false,
+        "color": false,
+        "blockquote": false}
+    });
+</script>

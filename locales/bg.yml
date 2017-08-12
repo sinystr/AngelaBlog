@@ -1,2 +1,26 @@
 bg:
   title: "Георги Николаев"
+  login: "Вход"
+  register: "Регистрация"
+  logout: "Изход"
+  create_article: "Създай статия"
+  users: "Потребители"
+  tags: "Тагове"
+  articles: "Статии"
+  login_button: "вход"
+  password: "Парола"
+  copyright: "&copy; 2017 Всички права запазени"
+  read_more: "Прочети още"
+  activerecord:
+    errors:
+      models:
+        user:
+          blank: "Please fill in your %{attribute}."
+          too_short: "The %{attribute} is too short."
+          too_long: "The %{attribute} is too long."
+          invalid: "The %{attribute} you entered is invalid."
+          taken: "The %{attribute} is already taken."
+        comment:
+          blank: "Вашият коментар не може да бъде празен!"
+          too_short: "Коментарът ви е прекалено кратък."
+          too_long: "Коментарът ви е прекалено дълъг."

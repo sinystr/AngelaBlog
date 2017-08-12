@@ -38,6 +38,12 @@ get '/edit/articles/create' do
     erb :'edit/articles/create'
 end
 
+get '/edit/articles/edit' do
+    @article = Article.find(params[:id])
+    erb :'edit/articles/create'
+end
+
+
 post '/edit/articles/create' do
     picturesController = PicturesController.new
     picture = picturesController.upload_picture params[:picture]
@@ -59,4 +65,30 @@ get '/edit/articles/delete' do
     Article.destroy(params[:id])
     flash[:success] = 'Успешно изтрихте статията!'
     redirect '/'
+end
+
+get '/edit/article/comment/delete' do
+    comment = Comment.find(params[:id])
+    article_id = comment.article_id
+    comment.destroy
+    flash[:success] = 'Успешно изтрихте коментара!'
+    redirect "/articles/?article_id=#{article_id}"
+end
+
+
+get '/edit/article/comment/edit' do
+    @comment = Comment.find(params[:id])
+    erb :'edit/articles/comment'
+end
+
+post '/edit/article/comment/edit' do
+    @comment = Comment.find(params[:id])
+    @comment.text = params[:text]
+
+    if @comment.save
+        flash[:success] = 'Коментара успешно е променен!'
+        redirect "/articles/?article_id=#{@comment.article_id}"
+    else  
+        erb :'edit/articles/comment', locals: {errors: @comment.errors}
+    end
 end
