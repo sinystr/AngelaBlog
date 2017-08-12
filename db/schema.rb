@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812121820) do
+ActiveRecord::Schema.define(version: 20170812135548) do
 
   create_table "articles", force: :cascade do |t|
     t.string "picture"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20170812121820) do
     t.string "name"
     t.integer "rank"
     t.string "secret_answer"
+    t.string "password_salt"
   end
 
 end

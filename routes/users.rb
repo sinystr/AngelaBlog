@@ -3,8 +3,11 @@ get '/users/register' do
 end
 
 post '/users/register' do
+  password_salt = BCrypt::Engine.generate_salt
+  password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
+
   user = User.new email: params[:email], 
-                  name: params[:name], password: params[:password], secret_answer: params[:secret_answer]
+                  name: params[:name], password: password_hash, password_salt: password_salt, secret_answer: params[:secret_answer]
   if user.save
     flash[:success] = 'Регистрирахте се успешно! Може да влезете в акаунта си.'
     redirect '/users/login'
@@ -24,11 +27,13 @@ get '/users/logout' do
 end
 
 post '/users/login' do
-  user = User.find_by(:email => params[:email], :password => params[:password]);
+  user = User.find_by(:email => params[:email]);
 
   if user
+    if user[:password] == BCrypt::Engine.hash_secret(params[:password], user[:password_salt])
       session[:user_id] = user.id
       redirect '/'
+    end
   else
       flash[:error] = 'Невалидно потребителско име или парола!'
       redirect '/users/login'

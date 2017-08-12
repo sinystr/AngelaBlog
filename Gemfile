@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sinatra-flash'
 
 gem 'rmagick'
+gem 'bcrypt'
 
 gem "sinatra-activerecord"
 gem "sqlite3"

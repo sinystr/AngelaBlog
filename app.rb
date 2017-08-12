@@ -5,6 +5,7 @@ require 'i18n'
 require 'i18n/backend/fallbacks'
 require 'securerandom'
 require 'rmagick'
+require 'bcrypt'
 
 # Routes
 require_relative 'routes/users'
