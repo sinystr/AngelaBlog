@@ -1,6 +1,18 @@
 get '/' do
-    @articles = Article.all
-    erb :index
+    redirect '/articles'
+end
+
+get '/articles' do
+    if !params[:tag].nil?
+        tag =  Tag.find(params[:tag])
+        @articles = tag.articles
+        @title = "Статии съдържащи таг: <b>#{tag.name}</b>"
+        erb :index
+    else
+        @title = "Статии"
+        @articles = Article.all
+        erb :index
+    end
 end
 
 get '/articles/' do
@@ -18,4 +30,9 @@ post '/articles/add_comment/' do
         flash[:error] = 'Коментара не е добавен успешно!'
         redirect '/'
     end
+end
+
+get '/tags/' do
+    @tags = Tag.all.select {|tag| tag.articles.count > 0}
+    erb :tags
 end

@@ -15,9 +15,7 @@
     <img id="picture-preview" src="/article_pictures/<%= @article.picture unless @article.nil? %>" height="250"/>
     <div class="clear"></div>
     <label>Картинка:</label>
-    <input id="picture" type="file" name="picture"
-            src="/article_pictures/<%= @article.picture unless @article.nil? %>"
-    />
+    <input id="picture" type="file" name="picture" required/>
     </div>
 
     <ul class="nav nav-tabs" style="margin:25px 0;">
@@ -43,11 +41,11 @@
             <div class="form-group">
                 <label>Заглавие:</label>
                 <input value="<%= @article.title_en unless @article.nil? %>"
-                type="text" class="form-control" name="title_en" placeholder="E-mail" required>
+                type="text" class="form-control" name="title_en" placeholder="Title" required>
             </div>
             <div class="form-group">
                 <label>Текст:</label>
-                <textarea class="article-text form-control" name="text_en">
+                <textarea class="article-text form-control" name="text_en" required>
                     <%= @article.text_en unless @article.nil? %>
                 </textarea>
             </div>

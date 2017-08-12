@@ -10,12 +10,13 @@
 <% if @articles.empty? %>
     <p class="alert alert-info">За съжалание в блога няма публикувани статии все още!</p>
 <% else %>
+    <h3 class="page-title"><%= @title %></h3>
     <% @articles.each do |article| %>
         <div class="row article">
-            <div class="col-md-4">
-                <img src="/article_pictures/<%= article.picture %>" width="210" class="left">
+            <div class="col-md-5">
+                <img src="/article_pictures/<%= article.picture %>" width="240" class="left">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h3><%= article.title %></h2>
                 <p><%= article.description %></p>
                 <input type="button" class="btn btn-primary" value="Прочети още" onclick="location.href = '/articles/?article_id=<%= article.id %>';">

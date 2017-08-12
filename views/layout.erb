@@ -28,7 +28,7 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><a href="/"><%= I18n.t('articles') %></a></li>
-            <li role="presentation"><a href="#"><%= I18n.t('tags') %></a></li>
+            <li role="presentation"><a href="/tags/"><%= I18n.t('tags') %></a></li>
             <% unless user_signed_in? %>
               <li role="presentation"><a href="/users/register"><%= I18n.t('register') %></a></li>
               <li role="presentation"><a href="/users/login"><%= I18n.t('login') %></a></li>

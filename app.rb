@@ -15,6 +15,7 @@ require_relative 'routes/edit'
 require_relative 'models/user'
 require_relative 'models/article'
 require_relative 'models/comment'
+require_relative 'models/tag'
 
 require_relative 'lib/pictures_controller'
 

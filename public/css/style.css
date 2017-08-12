@@ -129,3 +129,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   line-height: 50px;
   text-align: center;
 }
+
+.tags
+{
+  margin:0 10px;
+}
+
+.page-title
+{
+  color: #337ab7;
+  font-weight: normal;
+  margin-bottom: 25px;
+}
