@@ -1,0 +1,98 @@
+ <% if @article.nil? %>
+    <h3 class="page-title"><%= I18n.t('new_article') %></h3>
+    <form method="POST" action="/admin/articles/create" enctype="multipart/form-data">
+<% else %>
+    <h3 class="page-title"><%= I18n.t('change_article') %></h3>
+    <form method="POST" action="/admin/articles/update/<%= @article.id %>" enctype="multipart/form-data"> 
+<% end %>
+    <div class="form-group">
+        <img id="picture-preview" src="/article_pictures/<%= @article.picture unless @article.nil? %>" width="350"/>
+        <div class="clear"></div>
+        <label><%= I18n.t('picture') %>:</label>
+        <input id="picture" type="file" name="picture" <%= 'required' unless !@article.nil? %>/>
+    </div>
+
+    <ul class="nav nav-tabs" style="margin:25px 0;">
+        <li class="active"><a data-toggle="tab" href="#article-bulgarian">Български</a></li>
+        <li><a data-toggle="tab" href="#article-english">English</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="article-bulgarian" class="tab-pane fade in active">
+            <div class="form-group">
+                <label><%= I18n.t('title_field') %>:</label>
+                <input value="<%= @article.title_bg unless @article.nil? %>"
+                type="text" class="form-control" name="title_bg" placeholder="<%= I18n.t('title_field') %>" required>
+            </div> 
+            <div class="form-group">
+                <label><%= I18n.t('text') %>:</label>
+                <textarea class="article-text form-control" name="text_bg">
+                    <%= @article.text_bg unless @article.nil? %>
+                </textarea>
+            </div>
+        </div>
+        <div id="article-english" class="tab-pane fade">
+            <div class="form-group">
+                <label><%= I18n.t('title_field') %>:</label>
+                <input value="<%= @article.title_en unless @article.nil? %>"
+                type="text" class="form-control" name="title_en" placeholder="<%= I18n.t('title_field') %>" required>
+            </div>
+            <div class="form-group">
+                <label><%= I18n.t('text') %>:</label>
+                <textarea class="article-text form-control" name="text_en" required>
+                    <%= @article.text_en unless @article.nil? %>
+                </textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><%= I18n.t('tags') %>:</label>
+        <input type="text" class="form-control" name="tags" value="<%= @article.tags_string unless @article.nil? %>" data-role="tagsinput" placeholder="Tags">
+    </div> 
+    
+    <div class="form-check">
+    <label class="form-check-label">
+        <% if @article.nil? %>
+            <input class="form-check-input" type="checkbox" name="active" value="true" checked>
+        <% else %>
+            <input class="form-check-input" type="checkbox" name="active" value="true" <%= "checked" unless !@article.active %>>
+        <% end %>
+          <%= I18n.t('article_active_checkbox') %>
+    </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary right">
+        <% if @article.nil? %>
+            <%= I18n.t('publish') %>
+        <% else %>
+            <%= I18n.t('update') %>            
+        <% end %>
+    </button>
+</form>
+
+<script>
+    $('.article-text').wysihtml5({
+        toolbar: {
+        fa: true
+        }
+    });
+
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#picture-preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#picture").change(function(){
+        readURL(this);
+    });
+
+</script>

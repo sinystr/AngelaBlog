@@ -21,6 +21,7 @@
     <script type="text/javascript" src="/js/handlebars.runtime.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap3-wysihtml5.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-tagsinput.js"></script>
+
 </head>
 <body>
   <div class="container">
@@ -28,25 +29,23 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><a href="/"><%= I18n.t('articles') %></a></li>
-            <li role="presentation"><a href="/tags/"><%= I18n.t('tags') %></a></li>
+            <li role="presentation"><a href="/tags"><%= I18n.t('tags') %></a></li>
             <% unless user_signed_in? %>
               <li role="presentation"><a href="/users/register"><%= I18n.t('register') %></a></li>
               <li role="presentation"><a href="/users/login"><%= I18n.t('login') %></a></li>
             <% end %>
-            <% if user_signed_in? && current_user.can_control_users? %>
-              <li role="presentation"><a href="/edit/users/"><%= I18n.t('users') %></a></li>
-            <% end %>
-            <% if user_signed_in? && current_user.can_control_articles? %>
-              <li role="presentation"><a href="/edit/articles/create"><%= I18n.t('create_article') %></a></li>
+            <% if user_signed_in? && current_user.admin? %>
+              <li role="presentation"><a href="/admin/users"><%= I18n.t('users') %></a></li>
+              <li role="presentation"><a href="/admin/articles/create"><%= I18n.t('create_article') %></a></li>
             <% end %>
             <% if user_signed_in? %>
               <li role="presentation"><a href="/users/logout"><%= I18n.t('logout') %></a></li>
             <% end %>
           </ul>
         </nav>
-        <h3 class="text-muted" id='logo'><%= I18n.t('title') %></h3>
+        <h3 class="text-muted" id='logo'><a href="/"><%= I18n.t('title') %></a></h3>
         <% if user_signed_in? %>
-            <p class="navbar-text right" id='logged-in-account'>Добре дошъл, <%= current_user.name %>! </p> 
+            <p class="navbar-text right" id='logged-in-account'><%= I18n.t('welcome_user_message', user_name: current_user.name) %></p> 
         <% end %>
       </div><!-- /header -->
 
@@ -57,7 +56,7 @@
       </div>
 
       <footer class="footer">
-        <p class="left">&copy; 2017 Всички права запазени</p>
+        <p class="left">&copy; 2017 <%= I18n.t('all_rights_reserved') %></p>
         <form action="/" method="get" class="right">
           <select name="locale" onchange="this.form.submit()">
             <%= option_select "bg", "Български" %>

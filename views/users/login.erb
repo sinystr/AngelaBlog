@@ -1,4 +1,4 @@
-<h2 class="page-header"><%= I18n.t('login') %></h2>
+<h3 class="page-title"><%= I18n.t('login') %></h3>
 
 <% if flash[:success] %>
     <p class="alert alert-success"><%= flash[:success] %></p>
@@ -8,15 +8,15 @@
     <p class="alert alert-danger"><%= flash[:error] %></p>
 <% end %>
 
-<form method="post" action="/users/login">
+<form method="post" id="login-form" action="/users/login">
   <div class="form-group">
     <label>E-mail:</label>
     <input type="text" class="form-control" name="email" placeholder="E-mail" required>
   </div>
   <div class="form-group">
     <label><%= I18n.t('password') %>:</label>
-    <input type="password" class="form-control" name="password" placeholder="Парола" required>
+    <input type="password" class="form-control" name="password" placeholder="<%= I18n.t('password') %>" required>
   </div>
-  <a href="/users/forgotten_password" class="left">Забравена парола</a>
-  <button type="submit" class="btn btn-default right"><%= I18n.t('login_button') %></button>
+  <a href="/users/forgotten_password" class="left"><%= I18n.t('forgot_password') %></a>
+  <button type="submit" class="btn btn-primary right"><%= I18n.t('login_button') %></button>
 </form>

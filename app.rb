@@ -9,8 +9,8 @@ require 'bcrypt'
 
 # Routes
 require_relative 'routes/users'
-require_relative 'routes/index'
-require_relative 'routes/edit'
+require_relative 'routes/articles'
+require_relative 'routes/admin'
 
 # Models
 require_relative 'models/user'
@@ -19,6 +19,7 @@ require_relative 'models/comment'
 require_relative 'models/tag'
 
 require_relative 'lib/pictures_controller'
+require_relative 'lib/articles_controller'
 
 configure do
   I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
@@ -26,9 +27,11 @@ configure do
   I18n.backend.load_translations
 end
 
-enable :sessions
+get '/' do
+  redirect '/articles'
+end
 
-@current_user
+enable :sessions
 
 before do
   set_locale
@@ -45,7 +48,7 @@ helpers do
       redirect '/'
     end
 
-    I18n.locale = session[:locale] || "bg"
+    I18n.locale = session[:locale] || "en"
   end
 
   def user_signed_in?
@@ -60,8 +63,6 @@ helpers do
 
     @current_user;
   end
-
-  
 
   def option_select(value, text)
     selected = session[:locale] == value ? ' selected' : ''

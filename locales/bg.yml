@@ -11,6 +11,60 @@ bg:
   password: "Парола"
   copyright: "&copy; 2017 Всички права запазени"
   read_more: "Прочети още"
+  date: "Дата"
+  all_rights_reserved: "Всички права запазени."
+  comments: "Коментари"
+  sort_by: "Сортирай по"
+  date_asc: "Най-нови"
+  date_desc: "Най-стари"
+  title_asc: "Заглавие А-Я"
+  title_desc: "Заглавие Я-А"
+  forgot_password: "Забравена парола"
+  change: "Промени"
+  delete: "Изтрий"
+  welcome_user_message: "Добре дошъл, %{user_name}!"
+  no_active_tags: "Няма активни тагове."
+  name: "Име"
+  password_field_description: "Паролата трябва да е съставена от поне 6 знака"
+  confirm_password: "Потвърди парола"
+  secret_question: "Кой ти е любимия филм?"
+  secret_question_example: "Пример: Карибски пирати"
+  secret_question_description: "Въпроса ще бъде използван при изгубване на паролата"
+  logout_success: "Успешно излязохте от акаунта си!"
+  register_success: 'Регистрирахте се успешно! Може да влезете в акаунта си.'
+  invalid_user_or_password: 'Невалидно потребителско име или парола.'
+  user_does_not_exist: 'Потребителя не съществува!'
+  wrong_secret_answer: 'Отговора на тайния въпрос е грешен!'
+  restore_password: 'Възстанови парола'
+  new_password: 'Нова парола'
+  restore_password_success: 'Усешно възстановихте паролата си.'
+  restore_password_fail: 'Възникна грешка при възстановяването на паролата ви.'
+  no_other_users: 'There are not other registered users yet!'
+  admin: 'Администратор'
+  actions: 'Действия'
+  delete_user_success: 'Потребителя бе изтрит успешно'
+  no_rights: 'Нямате права да достъпите тази страница!'
+  rang_change_fail: 'Възникна грешка при обновяването на ранга на потребителя.'
+  article_published: 'Успешно публикувахте статията!'
+  article_updated: 'Успешно обновихте статията!'
+  article_deleted: 'Успешно изтрихте статията!'
+  comment_deleted: 'Успешно изтрихте коментара!'
+  comment_edited: 'Успешно променихте коментара!'
+  add_comment: 'Добави коментар'
+  register_to_comment: 'Трябва да се регистрирате за да коментирате!'
+  no_comments_article: 'Тази статия няма коментари!'
+  change_comment: 'Промени коментара'
+  new_article: 'Нова статия'
+  change_article: 'Промени статия'
+  picture: 'Картинка'
+  title_field: 'Заглавие'
+  text: 'Текст'
+  article_active_checkbox: 'Активна'
+  publish: 'Публикувай'
+  update: 'Обнови'
+  articles_with_tag: 'Статии които съдържат таг: <b>%{tag}</b>'
+  comment_successfuly_added: 'Коментара е добавен успешно!'
+  comment_not_successfuly_added: 'Коментара не е добавен успешно!'
   activerecord:
     errors:
       models:

@@ -1,4 +1,4 @@
-<h2 class="page-header">Регистрация</h2>
+<h3 class="page-title"><%= I18n.t("register") %></h3>
 <div id="status-messages">
   <% if flash[:success] %>
       <p class="bg-success"><%= flash[:success] %></p>
@@ -17,29 +17,29 @@
     <input type="text" class="form-control" name="email" placeholder="E-mail"/>
   </div>
   <div class="form-group">
-    <label>Име:</label>
-    <input type="text" class="form-control" name="name" placeholder="Потребител"/>
+    <label><%= I18n.t("name") %>:</label>
+    <input type="text" class="form-control" name="name" placeholder="<%= I18n.t("name") %>"/>
   </div>
   <div class="form-group error">
-    <label>Парола</label>
-    <input type="password" class="form-control" name="password" placeholder="Парола"/>
+    <label><%= I18n.t("password") %></label>
+    <input type="password" class="form-control" name="password" placeholder="<%= I18n.t("password") %>"/>
     <small class="text-muted">
-      Паролата трябва да е съставена от поне 6 знака
+      <%= I18n.t("password_field_description") %>
     </small>
   </div>
   <div class="form-group error">
-    <label>Парола отново</label>
-    <input type="password" class="form-control" placeholder="Повтори парола"/>
+    <label><%= I18n.t("confirm_password") %></label>
+    <input type="password" class="form-control" placeholder="<%= I18n.t("confirm_password") %>"/>
   </div>
   <div class="form-group error">
-    <label>Кой е любимия ти филм?</label>
-    <input type="text" class="form-control" name="secret_answer" placeholder="Пример: Карибски пирати"/>
+    <label><%= I18n.t("secret_question") %></label>
+    <input type="text" class="form-control" name="secret_answer" placeholder="<%= I18n.t("secret_question_example") %>"/>
     <small class="text-muted">
-      Въпроса ще бъде използван при изгубване на паролата
+      <%= I18n.t("secret_question_description") %>
     </small>
   </div>
 
-  <button type="submit" class="btn btn-default right">Регистрация</button>
+  <button type="submit" class="btn btn-primary right"><%= I18n.t("register") %></button>
 </form>
 
 <script>

@@ -1,0 +1,130 @@
+<% if flash[:error] %>
+    <p class="alert alert-danger"><%= flash[:error] %></p>
+<% end %>
+
+<% if flash[:success] %>
+    <p class="alert alert-success"><%= flash[:success] %></p>
+<% end %>
+
+<% if @articles.empty? %>
+    <p class="alert alert-info">За съжалание в блога няма публикувани статии все още!</p>
+<% else %>
+    <div class="articles-head">
+        <h3 class="page-title left"><%= @title %></h3>
+        
+<!-- demo -->
+<div id="demo" class="right">
+   
+   <!-- panel -->
+   <div class="jplist-panel">						
+      
+      <!-- jplist bootstrap sort dropdown control -->
+      <div 
+         class="dropdown"
+         data-control-type="boot-sort-drop-down" 
+         data-control-name="bootstrap-sort-dropdown-demo" 
+         data-control-action="sort"
+         data-datetime-format="{month}/{day}/{year}"> <!-- {year}, {month}, {day}, {hour}, {min}, {sec} -->
+        <button 
+         class="btn btn-default dropdown-toggle" 
+         type="button" 
+         id="sort-by-dropdown-btn" 
+         data-toggle="dropdown" 
+         aria-expanded="true">					
+         <span data-type="selected-text"><%= I18n.t("sort_by") %></span>
+         <span class="caret"></span>						
+        </button>
+        
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            
+            <li role="presentation">
+                <a 
+                role="menuitem" 
+                tabindex="-1" 
+                href="/articles?sort_by=date&order=DESC" 
+                data-path=".desc" 
+                data-order="asc" 
+                data-type="text"><%= I18n.t("date_asc") %></a>
+            </li>
+            
+            <li role="presentation">
+                <a 
+                role="menuitem" 
+                tabindex="-1" 
+                href="/articles?sort_by=date&order=ASC" 
+                data-path=".desc" 
+                data-order="desc" 
+                data-type="text"><%= I18n.t("date_desc") %></a>
+            </li>
+
+        <li role="presentation" class="divider"></li>
+        
+            <li role="presentation">
+                <a 
+                role="menuitem" 
+                tabindex="-1" 
+                href="/articles?sort_by=title&order=ASC" 
+                data-path=".title" 
+                data-order="asc" 
+                data-type="text" 
+                data-default="true"><%= I18n.t("title_asc") %></a>
+            </li>
+            
+            <li role="presentation">
+                <a 
+                role="menuitem" 
+                tabindex="-1" 
+                href="/articles?sort_by=title&order=DESC" 
+                data-path=".title" 
+                data-order="desc" 
+                data-type="text"><%= I18n.t("title_desc") %></a>
+            </li>
+      </div>	
+      
+   </div>				 
+               
+</div>
+
+    </div>
+    <% @articles.each do |article| %>
+        <div class="row article">
+            <div class="col-md-5">
+                <img src="/article_pictures/thumbs/240x150_<%= article.picture %>" width="240" class="left">
+            </div>
+            <div class="article-content col-md-7">
+                <h4><%= article.title %></h4>
+                <p><%= article.description %></p>
+                <div class="row">
+                    <div class="col-md-5">
+                        <input type="button" class="btn btn-primary" value="<%= I18n.t('read_more') %>" onclick="location.href = '/articles/<%= article.id %>';">
+                    </div>
+                    <div class="col-md-4 right article-info">
+                        <p><b><%= I18n.t('date') %>:</b> <%= article.created_at.strftime("%d/%m/%Y") %></p>
+                    </div>
+                    <div class="col-md-3 right article-info">
+                        <p><b><%= I18n.t('comments') %>:</b> <%= article.comments.count %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                    <% if user_signed_in? && current_user.admin? %>
+                        <a class="left" href="/admin/articles/edit/<%= article.id %>"><%= I18n.t('change') %></a>
+                        <a class="left ml-15" href="/admin/articles/delete/<%= article.id %>"><%= I18n.t('delete') %></a>
+                    <% end %>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
+<script type="text/javascript" src="/js/jplist.core.min.js"></script>
+<script type="text/javascript" src="/js/jplist.sort-bundle.min.js"></script>
+<script>
+    $('document').ready(function(){
+        $('#demo').jplist({				
+            itemsBox: '.list' 
+            ,itemPath: '.list-item' 
+            ,panelPath: '.jplist-panel'	
+        });
+    
+    });
+</script>

@@ -11,6 +11,60 @@ en:
   password: "Password"
   copyright: "&copy; 2017 All rights reserved."
   read_more: "Read more"
+  date: "Date"
+  all_rights_reserved: "All rights reserved."
+  comments: "Comments"
+  sort_by: "Sort by"
+  date_asc: "Newest first"
+  date_desc: "Oldest first"
+  title_asc: "Title A-Z"
+  title_desc: "Title Z-A"
+  forgot_password: "Forgot password"
+  change: "Change"
+  delete: "Delete"
+  welcome_user_message: "Welcome, %{user_name}!"
+  no_active_tags: "There are not active tags."
+  name: "Name"
+  password_field_description: "The password should contain atleast 6 characters"
+  confirm_password: "Confirm password"
+  secret_question: "Which is your favorite movie?"
+  secret_question_example: "Example: Pirates of the Carribean"
+  secret_question_description: "The secret question will be used for password restoration"
+  logout_success: "You successfuly logged out."
+  register_success: 'You are not registered! You may proceed with loggin into your account.'
+  invalid_user_or_password: 'Invalid user or password.'
+  user_does_not_exist: 'User does not exist!'
+  wrong_secret_answer: 'Wrong secret answer!'
+  restore_password: 'Restore password'
+  new_password: 'New password'
+  restore_password_success: 'You successfully restore your password.'
+  restore_password_fail: 'The password restoration failed.'
+  no_other_users: 'No other uses in the blog yet!'
+  admin: 'Administrator'
+  actions: 'Actions'
+  delete_user_success: 'The user was successfuly deleted'
+  no_rights: 'You have no rights for this page!'
+  rang_change_fail: 'An error occured while changing user rang.'
+  article_published: 'Article published successfuly!'
+  article_updated: 'Article updated successfuly!'
+  article_deleted: 'Article deleted successfuly!'
+  comment_deleted: 'Comment deleted successfuly!'
+  comment_edited: 'Comment edited successfuly!!'
+  add_comment: 'Add comment'
+  register_to_comment: 'You must register to comment!'
+  no_comments_article: 'This article has no comments!'
+  change_comment: 'Change comment'
+  new_article: 'New article'
+  change_article: 'Change article'
+  picture: 'Picture'
+  title_field: 'Title'
+  text: 'Text'
+  article_active_checkbox: 'Active'
+  publish: 'Publish'
+  update: 'Update'
+  articles_with_tag: 'Articles wich contain the tag: <b>%{tag}</b>'
+  comment_successfuly_added: 'Comment successfuly added!'
+  comment_not_successfuly_added: 'Comment not successfuly added!'
   activerecord:
     errors:
       models:
@@ -24,4 +78,3 @@ en:
           blank: "Your comment cannot be empty!"
           too_short: "Your comment is too short."
           too_long: "Your comment is too long."
-          

@@ -1,4 +1,4 @@
-<h4 class="mt-40">Промяна на коментар</h4>
+<h4 class="mt-40"><%= I18n.t('change_comment') %></h4>
 
 <% if defined? errors and !errors.empty? %>
     <% errors.keys.each do |attr| %>
@@ -7,10 +7,9 @@
 <% end %>
 
 <div class="manage-comment">
-    <form method="POST" action="/edit/article/comment/edit">
+    <form method="POST" action="/admin/comments/edit/<%= @comment.id %>">
         <textarea name="text"><%= @comment.text %></textarea>
-        <input name="id" type="text" value="<%= @comment.id %>" class="hidden">
-        <button type="submit" class="btn btn-primary">Промени коментар</button>
+        <button type="submit" class="btn btn-primary"><%= I18n.t('change_comment') %></button>
     </form>
 </div>
 

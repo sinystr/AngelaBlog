@@ -1,0 +1,16 @@
+<h3 class="page-title"><%= I18n.t("tags") %></h3>
+<div class="tags">
+    <% if !@tags.nil? %>
+        <% @tags.each do |tag| %>
+        <button type="button" class="btn btn-default" onclick="show_artciles_for_tag(<%= tag.id %>)"><%= tag.name %></button>
+        <% end %>
+    <% else %>
+        <p class="alert alert-info"><%= I18n.t("no_active_tags") %></p>
+    <% end %>
+</div>
+
+<script>
+    function show_artciles_for_tag(tag_id){
+        location.href = '/articles/tag/' + tag_id
+    }
+</script>

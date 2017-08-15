@@ -1,0 +1,48 @@
+<h3 class="page-title"><%= I18n.t('users') %></h3>
+
+<% if flash[:error] %>
+    <p class="alert alert-danger"><%= flash[:error] %></p>
+<% end %>
+
+<% if flash[:success] %>
+    <p class="alert alert-success"><%= flash[:success] %></p>
+<% end %>
+
+<% if @users.count == 1 %>
+    <p class="alert alert-info"><%= I18n.t('no_other_users') %></p>
+<% else %>
+    <table class="table table-striped">
+     <thead>
+        <tr>
+            <th>E-mail</th>
+            <th><%= I18n.t('name') %></th>
+            <th style="text-align:center;"><%= I18n.t('admin') %></th>
+            <th style="text-align:center;"><%= I18n.t('actions') %></th>
+        </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |user| %>
+                <% unless user.id == current_user.id %>
+                    <tr>
+                        <td><%= user.email %></td>
+                        <td><%= user.name %></td>
+                        <td align="center"><input type="checkbox" 
+                                            <%= 'checked = "checked"' unless user.rank < 1 %> 
+                                            id="user-<%= user.id %>" 
+                                            onclick="return change_rank('<%= user.id %>');" ></td>
+                        <td align="center"><a href="/admin/users/delete/<%= user.id %>"><%= I18n.t('delete') %></a></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+        </table>    
+
+<% end %>
+
+<script>
+    function change_rank(user_id)
+    {
+        var new_rank = $('#user-' + user_id).prop('checked') ? 1 : 0;
+       $.redirect('/admin/users/set_rank', {user_id: user_id, rank: new_rank});
+    }
+</script>

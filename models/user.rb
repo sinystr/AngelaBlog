@@ -6,20 +6,9 @@ class User < ActiveRecord::Base
   validates :name, length: {minimum: 6, maximum: 120}
   validates :password, presence: true
   validates :password, length: {minimum: 6, maximum: 120}
+  validates :password_salt, presence: true
 
   has_many :comments
-
-  def can_control_users?
-    rank == 1
-  end
-
-  def can_control_articles?
-    rank == 1
-  end
-
-  def can_control_comments?
-    rank == 1
-  end
 
   def admin?
     rank == 1

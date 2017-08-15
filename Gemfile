@@ -1,13 +1,15 @@
 source 'https://rubygems.org'
 
+gem 'rake'
 gem 'sinatra'
 gem 'sinatra-flash'
-
-gem 'rmagick'
+gem 'sinatra-activerecord'
+gem 'sqlite3'
 gem 'bcrypt'
-
-gem "sinatra-activerecord"
-gem "sqlite3"
-gem "rake"
-
 gem 'rspec'
+gem 'rmagick'
+
+group :test do
+    gem 'rspec'
+    gem 'capybara'
+  end

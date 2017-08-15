@@ -9,7 +9,7 @@ post '/users/register' do
   user = User.new email: params[:email], 
                   name: params[:name], password: password_hash, password_salt: password_salt, secret_answer: params[:secret_answer]
   if user.save
-    flash[:success] = 'Регистрирахте се успешно! Може да влезете в акаунта си.'
+    flash[:success] = I18n.t('register_success')
     redirect '/users/login'
   else  
     erb :'users/register', locals: {errors: user.errors}
@@ -22,7 +22,7 @@ end
 
 get '/users/logout' do
   session[:user_id] = nil
-  flash[:success] = 'Успешно излязохте от акаунта си!'
+  flash[:success] = I18n.t('logout_success')
   redirect '/users/login'
 end
 
@@ -35,7 +35,7 @@ post '/users/login' do
       redirect '/'
     end
   else
-      flash[:error] = 'Невалидно потребителско име или парола!'
+      flash[:error] = I18n.t('invalid_user_or_password')
       redirect '/users/login'
   end
 
@@ -50,15 +50,26 @@ post '/users/forgotten_password' do
   user = User.find_by email: params[:email]
   
   if !user
-    flash[:error] = 'Потребителя не съществува!'
+    flash[:error] = I18n.t('user_does_not_exist')
     redirect '/users/forgotten_password'
   end
     
   if user.secret_answer != params[:secret_answer]
-    flash[:error] = 'Отговора на тайния въпрос е грешен!'
+    flash[:error] = I18n.t('wrong_secret_answer')
     redirect '/users/forgotten_password'
   end
 
-  flash[:success] = "Усешно възстановихте паролата си! Паролата ви за вход е '#{user.password}'."
+  password_salt = BCrypt::Engine.generate_salt
+  password_hash = BCrypt::Engine.hash_secret(params[:new_password], password_salt)
+
+  user.password = password_hash;
+  user.password_salt = password_salt;
+  
+  if user.save
+    flash[:success] = I18n.t('restore_password_success')
+  else
+    flash[:fail] = I18n.t('restore_password_fail')
+  end
+
   redirect '/users/login'
 end

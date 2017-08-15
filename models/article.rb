@@ -13,4 +13,10 @@ class Article < ActiveRecord::Base
     def description
         "#{self["text_#{I18n.locale}"][0..210]}.."
     end
+
+    def tags_string
+        tags = ''
+        self.tags.each {|tag| tags << "#{tag.name} ,"}
+        tags
+    end
 end

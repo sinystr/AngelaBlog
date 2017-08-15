@@ -7,19 +7,19 @@
 <% end %>
 
 <div class="row article">
-    <div class="col-md-4">
-        <img src="/article_pictures/<%= @article.picture %>" width="210" class="left">
+    <div class="col-md-12">
+        <h3><%= @article.title %></h3>
     </div>
-    <div class="col-md-8">
-        <h3><%= @article.title %></h2>
-        <p><%= @article.description %></p>
+    <div class="col-md-12">
+        <p><img src="/article_pictures/<%= @article.picture %>" width="350" class="left">
+        <%= @article.description %></p>
     </div>
 </div>
 
-<h4 class="mt-40">Коментари</h4>
+<h4 class="mt-40"><%= I18n.t('comments') %></h4>
 <div id="comments">
 <% if @article.comments.empty? %>
-    <p class="alert alert-info">Тази статия няма коментари!</p>
+    <p class="alert alert-info"><%= I18n.t('no_comments_article') %></p>
 <% else %>
     <% @article.comments.each do |comment| %>
         <div class="row article-comment">
@@ -29,10 +29,10 @@
             <div class="col-md-9 comment-text">
                 <%= comment.text %>
             </div>
-            <% if user_signed_in? && current_user.can_control_articles? %>
+            <% if user_signed_in? && current_user.admin? %>
             <div class="edit-comment">
-                <a href="/edit/article/comment/edit?id=<%= comment.id %>">Промени</a>
-                <a href="/edit/article/comment/delete?id=<%= comment.id %>">Изтрий</a>
+                <a href="/admin/comments/edit/<%= comment.id %>"><%= I18n.t('change') %></a>
+                <a href="/admin/comments/delete/<%= comment.id %>"><%= I18n.t('delete') %></a>
             </div>
             <% end %>
         </div>
@@ -41,17 +41,17 @@
 </div>
 
 <% if user_signed_in? %>
-<h4 class="mt-40">Добави коментар</h4>
+<h4 class="mt-40"><%= I18n.t('add_comment') %></h4>
 <div class="manage-comment">
     <form method="POST" action="/articles/add_comment/">
         <textarea name="comment"></textarea>
         <input name="article_id" type="text" value="<%= @article.id %>" class="hidden">
-        <button type="submit" class="btn btn-primary">Добави коментар</button>
+        <button type="submit" class="btn btn-primary"><%= I18n.t('add_comment') %></button>
     </form>
 </div>
 <% else %>
     <div id="cannot-comment">
-        <h5>Трябва да сте регистриран потребител за да коментирате!</h5>
+        <h5><%= I18n.t('register_to_comment') %></h5>
     </div>
 <% end %>
 
