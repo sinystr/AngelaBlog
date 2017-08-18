@@ -1,15 +1,17 @@
 source 'https://rubygems.org'
 
-gem 'rake'
-gem 'sinatra'
-gem 'sinatra-flash'
-gem 'sinatra-activerecord'
-gem 'sqlite3'
 gem 'bcrypt'
-gem 'rspec'
+gem 'rake'
 gem 'rmagick'
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'sinatra-flash'
+gem 'sqlite3'
 
 group :test do
-    gem 'rspec'
-    gem 'capybara'
-  end
+  gem 'database_cleaner'
+  gem 'factory_girl'
+  gem 'rspec'
+
+  gem 'capybara', '~> 2.8'
+end

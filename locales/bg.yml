@@ -65,15 +65,21 @@ bg:
   articles_with_tag: 'Статии които съдържат таг: <b>%{tag}</b>'
   comment_successfuly_added: 'Коментара е добавен успешно!'
   comment_not_successfuly_added: 'Коментара не е добавен успешно!'
+  password_invalid: 'Паролата трябва да е между 0 и 32 символа'
   activerecord:
+    attributes:
+        user:
+          email: 'и-мейл'
+          password: 'парола'
+          name: 'име'
     errors:
       models:
         user:
-          blank: "Please fill in your %{attribute}."
-          too_short: "The %{attribute} is too short."
-          too_long: "The %{attribute} is too long."
-          invalid: "The %{attribute} you entered is invalid."
-          taken: "The %{attribute} is already taken."
+          blank: "Моля въведете %{attribute}."
+          too_short: "Въведения текст в полето за %{attribute} е прекалено кратък."
+          too_long: "Въведения текст в полето за %{attribute} е прекалено дълъг."
+          invalid: "Въведения текст в полето за %{attribute} е невалиден."
+          taken: "Използвали сте %{attribute} който вече e зает от друг потребител."
         comment:
           blank: "Вашият коментар не може да бъде празен!"
           too_short: "Коментарът ви е прекалено кратък."
