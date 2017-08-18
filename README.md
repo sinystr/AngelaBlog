@@ -1,5 +1,4 @@
-# Sinystr blog
-[![Build Status](https://travis-ci.org/sinystr/Sinystr-blog.png)](https://travis-ci.org/sinystr/Sinystr-blog)
+# Sinystr blog [![Build Status](https://travis-ci.org/sinystr/Sinystr-blog.svg?branch=master)](https://travis-ci.org/sinystr/Sinystr-blog)
 Това е личния ми проект за курса 'Програмиране с Ruby' 2017
 
 
