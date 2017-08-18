@@ -32,11 +32,11 @@ RSpec.describe 'Articles system', type: :feature do
     expect(page).to have_content 'Example comment.'
   end
 
-  scenario 'allows users to see all tags used in articles' do
-    article = create :article_with_tag
-    visit '/tags'
-    expect(page).to have_content 'EXAMPLE TAG'
-  end
+  # scenario 'allows users to see all tags used in articles' do
+  #   article = create :article_with_tag
+  #   visit '/tags'
+  #   expect(page).to have_content 'EXAMPLE TAG'
+  # end
 
   scenario 'allows users to see all articles for certain tag' do
     article = create :article_with_tag
