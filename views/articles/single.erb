@@ -24,7 +24,11 @@
     <% @article.comments.each do |comment| %>
         <div class="row article-comment">
             <div class="col-md-3 comment-user">
+            <% if !comment.user.nil? %>
                 <b><%= comment.user.name %></b>
+            <% else %>
+                <b><%= I18n.t('anonymous') %></b>
+            <% end %>
             </div>
             <div class="col-md-9 comment-text">
                 <%= comment.text %>

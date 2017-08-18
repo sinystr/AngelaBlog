@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def password_valid?(password)
-    !password.empty? && password.length < 32
+    !password.empty? && password.length < 32 && password.length >= 6
   end
 
   def password_to_be_hashed=(password)

@@ -1,7 +1,8 @@
 get '/articles' do
   @title = I18n.t('articles')
   articles_controller = ArticlesController.new
-  @articles = articles_controller.get_articles_for_params(params)
+  @articles = articles_controller.articles_for_params(params)
+  @articles = @articles.select(&:active) unless user_signed_in? && current_user.admin?
   erb :'articles/list'
 end
 

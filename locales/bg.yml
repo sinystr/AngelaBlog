@@ -66,6 +66,7 @@ bg:
   comment_successfuly_added: 'Коментара е добавен успешно!'
   comment_not_successfuly_added: 'Коментара не е добавен успешно!'
   password_invalid: 'Паролата трябва да е между 0 и 32 символа'
+  anonymous: 'Анонимен'
   activerecord:
     attributes:
         user:

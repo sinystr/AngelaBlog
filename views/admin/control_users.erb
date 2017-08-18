@@ -27,7 +27,7 @@
                         <td><%= user.email %></td>
                         <td><%= user.name %></td>
                         <td align="center"><input type="checkbox" 
-                                            <%= 'checked = "checked"' unless user.rank < 1 %> 
+                                            <%= 'checked = "checked"' unless user.rank.nil? || user.rank < 1 %> 
                                             id="user-<%= user.id %>" 
                                             onclick="return change_rank('<%= user.id %>');" ></td>
                         <td align="center"><a href="/admin/users/delete/<%= user.id %>"><%= I18n.t('delete') %></a></td>

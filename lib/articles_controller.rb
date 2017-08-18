@@ -1,17 +1,25 @@
 class ArticlesController
-  def get_articles_for_params(params)
-    valid_sorting_attributes = %w[date title]
-    if !params[:sort_by].nil? && valid_sorting_attributes.include?(params[:sort_by])
-      valid_sorting_orders = %w[ASC DESC]
-      sorting_order = valid_sorting_orders.include?(params[:order]) ?
-                                   params[:order] : 'ASC'
-      if params[:sort_by] != 'date'
-        @articles = Article.order("#{params[:sort_by]}_#{I18n.locale} #{sorting_order}")
-      else
-        @articles = Article.order("created_at #{sorting_order}")
-      end
+  def articles_for_params(params)
+    if valid_sorting_attr?(params[:sort_by])
+      articles = Article.order("#{sorting_attr(params[:sort_by])} #{sorting_order(params[:order])}")
     else
       @articles = Article.order('created_at DESC')
     end
   end
+
+  def sorting_attr(attr)
+    attr == 'created_at' ? 'created_at' : "#{attr}_#{I18n.locale}"
+  end
+
+  def valid_sorting_attr?(attr)
+    valid_sorting_attrs = %w[created_at title]
+    !attr.nil? && valid_sorting_attrs.include?(attr)
+  end
+
+  def sorting_order(order)
+    valid_sorting_orders = %w[ASC DESC]
+    valid_sorting_orders.include?(order) ? order : 'ASC'
+  end
+
+  def filter_for_current_user(articles); end
 end

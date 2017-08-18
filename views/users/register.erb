@@ -3,7 +3,11 @@
   <% if flash[:success] %>
       <p class="bg-success"><%= flash[:success] %></p>
   <% end %>
-  
+
+  <% if flash[:error] %>
+      <p class="alert alert-danger"><%= flash[:error] %></p>
+  <% end %>
+
   <% if defined? errors and !errors.empty? %>
     <% errors.keys.each do |attr| %>
       <p class="alert alert-danger"><%= errors[attr][0] %></p>

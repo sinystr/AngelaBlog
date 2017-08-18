@@ -66,6 +66,7 @@ en:
   comment_successfuly_added: 'Comment successfuly added!'
   comment_not_successfuly_added: 'Comment not successfuly added!'
   password_invalid: 'Your password should be between 0 and 6 characters'
+  anonymous: 'Anonymous'
   activerecord:
     errors:
       models:
