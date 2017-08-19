@@ -1,6 +1,6 @@
 <h3 class="page-title"><%= I18n.t("tags") %></h3>
 <div class="tags">
-    <% if !@tags.nil? && @tags.count < 0%>
+    <% if !@tags.nil? && @tags.count > 0%>
         <% @tags.each do |tag| %>
         <button type="button" class="btn btn-default" onclick="show_artciles_for_tag(<%= tag.id %>)"><%= tag.name %></button>
         <% end %>
