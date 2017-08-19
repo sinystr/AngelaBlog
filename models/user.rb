@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     self.password = BCrypt::Engine.hash_secret(password, password_salt)
   end
 
-  def is_password_correct?(password)
+  def password_correct?(password)
     self.password == BCrypt::Engine.hash_secret(password, password_salt)
   end
 end

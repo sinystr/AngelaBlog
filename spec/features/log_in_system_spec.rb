@@ -18,13 +18,15 @@ RSpec.describe 'Login system', type: :feature do
     expect(page).to have_content I18n.t('logout')
   end
 
-  scenario 'does not allow user to restore lost password with incorrect secret answer' do
+  scenario 'does not allow user to restore lost
+            password with incorrect secret answer' do
     user = create :user, secret_answer: 'Pirates of the Carribean'
     restore_password_with user.email, 'Inception', 'newpass'
     expect(page).to have_content I18n.t('wrong_secret_answer')
   end
 
-  scenario 'does not allow user to restore lost password for email that does not exist' do
+  scenario 'does not allow user to restore lost
+            password for email that does not exist' do
     restore_password_with 'notexisting@test.com', 'notexisting', 'notexisting'
     expect(page).to have_content I18n.t('user_does_not_exist')
   end
@@ -38,19 +40,22 @@ RSpec.describe 'Login system', type: :feature do
   scenario 'does not allow user to register with invalid email' do
     user = build(:user)
     sign_up_with('testtest', user.name, '111111', user.secret_answer)
-    expect(page).to have_content 'Въведения текст в полето за и-мейл е невалиден'
+    expect(page).to have_content 'Въведения текст в полето
+                                  за и-мейл е невалиден'
   end
 
   scenario 'does not allow user to register with already existing email' do
     user = create(:user)
     sign_up_with(user.email, user.name, '111111', user.secret_answer)
-    expect(page).to have_content 'Използвали сте и-мейл който вече e зает от друг потребител.'
+    expect(page).to have_content 'Използвали сте и-мейл който
+                                  вече e зает от друг потребител.'
   end
 
   scenario 'does not allow user to register with invalid name' do
     user = build(:user)
     sign_up_with(user.email, 'srt', '111111', user.secret_answer)
-    expect(page).to have_content 'Въведения текст в полето за име е прекалено кратък.'
+    expect(page).to have_content 'Въведения текст в полето
+                                  за име е прекалено кратък.'
   end
 
   scenario 'does not allow user to register with invalid password' do

@@ -2,7 +2,9 @@ get '/articles' do
   @title = I18n.t('articles')
   articles_controller = ArticlesController.new
   @articles = articles_controller.articles_for_params(params)
-  @articles = @articles.select(&:active) unless user_signed_in? && current_user.admin?
+  unless user_signed_in? && current_user.admin?
+    @articles = @articles.select(&:active) 
+  end
   erb :'articles/list'
 end
 
@@ -19,7 +21,9 @@ get '/articles/:id' do
 end
 
 post '/articles/add_comment/' do
-  comment = Comment.new text: params[:comment], user_id: session[:user_id], article_id: params[:article_id]
+  comment = Comment.new text: params[:comment], 
+                    user_id: session[:user_id], 
+                    article_id: params[:article_id]
 
   if comment.save
     flash[:success] = I18n.t('comment_successfuly_added')

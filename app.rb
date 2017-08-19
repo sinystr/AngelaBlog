@@ -20,7 +20,7 @@ require_relative 'models/tag'
 
 require_relative 'lib/pictures_controller'
 require_relative 'lib/articles_controller'
-require_relative 'helpers/I18n_helper'
+require_relative 'helpers/i18n_helper'
 
 enable :sessions
 

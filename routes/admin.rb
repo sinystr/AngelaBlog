@@ -45,13 +45,15 @@ get '/admin/articles/edit/:id' do
 end
 
 post '/admin/articles/create' do
-  picturesController = PicturesController.new
-  picture = picturesController.upload_picture params[:picture]
+  pictures_controller = PicturesController.new
+  picture = pictures_controller.upload_picture params[:picture]
 
-  article = Article.new picture: picture, title_en: params[:title_en], text_en: params[:text_en],
-                        title_bg: params[:title_bg], text_bg: params[:text_bg], active: params[:active]
+  article = Article.new picture: picture, title_en: params[:title_en],
+                        text_en: params[:text_en], title_bg: params[:title_bg],
+                        text_bg: params[:text_bg], active: params[:active]
 
-  article.tags << params[:tags].split(',').map { |tag| Tag.find_or_create_by(name: tag) }
+  article.tags << params[:tags].split(',')
+                               .map { |tag| Tag.find_or_create_by(name: tag) }
 
   if article.save
     flash[:success] = I18n.t('article_published')
@@ -63,8 +65,8 @@ end
 
 post '/admin/articles/update/:id' do
   if params[:picture]
-    picturesController = PicturesController.new
-    picture = picturesController.upload_picture params[:picture]
+    pictures_controller = PicturesController.new
+    picture = pictures_controller.upload_picture params[:picture]
   end
 
   article = Article.find(params[:id])
@@ -77,7 +79,8 @@ post '/admin/articles/update/:id' do
 
   if article.save
     article.tags.destroy_all
-    article.tags << params[:tags].split(',').map { |tag| Tag.find_or_create_by(name: tag) }
+    article.tags << params[:tags].split(',')
+                                 .map { |tag| Tag.find_or_create_by(name: tag) }
     flash[:success] = I18n.t('article_updated')
     redirect '/'
   else

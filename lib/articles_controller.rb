@@ -1,9 +1,11 @@
 class ArticlesController
   def articles_for_params(params)
     if valid_sorting_attr?(params[:sort_by])
-      articles = Article.order("#{sorting_attr(params[:sort_by])} #{sorting_order(params[:order])}")
+      sort_attr = sorting_attr(params[:sort_by])
+      sort_order = sorting_order(params[:order])
+      Article.order("#{sort_attr} #{sort_order}")
     else
-      @articles = Article.order('created_at DESC')
+      Article.order('created_at DESC')
     end
   end
 
@@ -20,6 +22,4 @@ class ArticlesController
     valid_sorting_orders = %w[ASC DESC]
     valid_sorting_orders.include?(order) ? order : 'ASC'
   end
-
-  def filter_for_current_user(articles); end
 end

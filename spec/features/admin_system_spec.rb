@@ -46,7 +46,7 @@ RSpec.describe 'Admin system', type: :feature do
   scenario 'allows admins to change comments' do
     article = create :article
     visit "/articles/#{article.id}"
-    
+
     fill_in 'comment', with: 'TEST COMMENT'
     click_on I18n.t('add_comment')
     expect(page).to have_content 'TEST COMMENT'
