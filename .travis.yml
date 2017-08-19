@@ -3,5 +3,5 @@ rvm:
  - 2.3.4
 service:
 - imagick
-script:
+before_script:
 - bundle exec rake db:setup
