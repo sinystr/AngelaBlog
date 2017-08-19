@@ -7,9 +7,10 @@ namespace :db do
   end
 end
 
-task :default => [:spec]
-
-desc "Run the specs."
-RSpec::Core::RakeTask.new do |t|
-  t.pattern = "spec.rb"
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = Dir.glob('spec/**/*_spec.rb')
+  t.rspec_opts = '--format documentation'
+  t.rcov = true
 end
+
+task :default => [:spec]
