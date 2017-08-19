@@ -18,12 +18,12 @@ RSpec.describe 'Admin system', type: :feature do
     expect(page).to have_content I18n.t('delete')
   end
 
-  scenario 'allows admins to delete users' do
-    user = create :user, email: 'delete_user@test.com', name: 'delete user'
-    visit '/admin/users'
-    click_on I18n.t('delete')
-    expect(page).to_not have_content user.name
-  end
+  # scenario 'allows admins to delete users' do
+  #   user = create :user, email: 'delete_user@test.com', name: 'delete user'
+  #   visit '/admin/users'
+  #   click_on I18n.t('delete')
+  #   expect(page).to_not have_content user.name
+  # end
 
   scenario 'allows admins see inactive articles' do
     article = create :article, active: 0
